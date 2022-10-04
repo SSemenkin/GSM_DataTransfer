@@ -207,7 +207,7 @@ void Telnet::writeIfStateEnabled()
         if (commands.first() == connectSymbol || commands.first() == disconnectSymbol) {
             telnet->sendData(commands.first().toLatin1());
         } else {
-            if (commands.first().length() > 5 && commands.first().at(4) != 'p') {
+            if (commands.first().length() > 5 && commands.first().at(4).toLower() != 'p') {
                 commands.first() += "\n;";
             }
             telnet->sendData(commands.first().toLatin1() + '\n');

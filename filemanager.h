@@ -2,7 +2,7 @@
 #define FILEMANAGER_H
 
 #include <QObject>
-#include "Singleton.h"
+#include "singleton.h"
 
 class FileManager : public QObject, public Singleton<FileManager>
 {

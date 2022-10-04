@@ -4,7 +4,10 @@
 #include <QSettings>
 #include <QStandardPaths>
 #include <QCoreApplication>
-#include "Singleton.h"
+#include "singleton.h"
+
+#define COMMAND_FILE "command_file_location"
+
 
 class Settings : protected QSettings, public Singleton<Settings>
 {
@@ -18,7 +21,6 @@ protected:
             QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/" +
             qApp->applicationName() + "/" + "config.ini");
 private:
-#define COMMAND_FILE "command_file_location"
 };
 
 #endif // SETTINGS_H

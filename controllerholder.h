@@ -3,7 +3,8 @@
 
 #include <QObject>
 #include <QMap>
-#include "Singleton.h"
+#include <QSharedPointer>
+#include "singleton.h"
 
 class Telnet;
 
@@ -18,14 +19,11 @@ protected:
     explicit ControllerHolder();
 private:
     static bool init();
-
     void parseOutput(const QString &answer);
-
 private:
     QVector<QSharedPointer<Telnet>> m_controllers;
     // [controller][tranceiverGroup][cell/param]
     QMap<QString, QMap<QString, QMap<QString, QStringList>>> m_data;
-
     static QVector<QString> m_commands;
 };
 

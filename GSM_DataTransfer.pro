@@ -18,7 +18,7 @@ SOURCES += \
     settings.cpp
 
 HEADERS += \
-    Singleton.h \
+    singleton.h \
     controllerholder.h \
     filemanager.h \
     mainwindow.h \

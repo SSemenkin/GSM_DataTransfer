@@ -7,7 +7,7 @@ class Singleton
   public:
     static T* instance()
     {
-        static T object;
+        static tInstance object;
         return &object;
     }
 
@@ -17,9 +17,9 @@ class Singleton
 protected:
     Singleton() {}
 private:
-    struct derived_from_T : public T
+    struct tInstance : public T
     {
-        derived_from_T() : T() {}
+        tInstance() : T() {}
     };
 };
 

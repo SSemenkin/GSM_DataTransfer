@@ -2,6 +2,8 @@
 #include "filemanager.h"
 #include "settings.h"
 
+QVector<QString> ControllerHolder::m_commands {};
+
 ControllerHolder::ControllerHolder()
     : QObject{}
 {

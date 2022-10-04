@@ -32,6 +32,7 @@ QVector<QString> FileManager::getFileContent(const QString &path)
     for (int i = 0; i < data.size(); ++i) {
         if (data.at(i) == '\r') {
             i+=2;
+            temporary = temporary.trimmed();
             pushToContainerIf(result, temporary, isStringCorrect);
             temporary.clear();
         }
