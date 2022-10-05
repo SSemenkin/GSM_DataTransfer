@@ -12,7 +12,14 @@ class ControllerHolder : public QObject, public Singleton<ControllerHolder>
 {
     Q_OBJECT
 public:
+    enum class State
+    {
+        Idle,
+        Busy
+    };
+
     void collectData();
+    State state() const;
 signals:
     void dataCollected(const QMap<QString, QMap<QString, QMap<QString, QStringList>>> &data);
 protected:
@@ -24,7 +31,9 @@ private:
     QVector<QSharedPointer<Telnet>> m_controllers;
     // [controller][tranceiverGroup][cell/param]
     QMap<QString, QMap<QString, QMap<QString, QStringList>>> m_data;
-    static QVector<QString> m_commands;
+    static QVector<QString> s_commans;
+    size_t m_receive {0};
+    State m_state {State::Idle};
 };
 
 #endif // CONTROLLERHOLDER_H
