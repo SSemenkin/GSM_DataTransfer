@@ -8,6 +8,13 @@
 
 #define COMMAND_FILE "command_file_location"
 
+struct ControllerInfo
+{
+    QString hostname;
+    QString username;
+    QString password;
+};
+
 
 class Settings : protected QSettings, public Singleton<Settings>
 {
@@ -16,6 +23,12 @@ class Settings : protected QSettings, public Singleton<Settings>
 public:
     [[nodiscard]] QString getCommandFileLocation() const;
     void setCommandFileLocation(const QString &fullFilename);
+
+    [[nodiscard]] QList<ControllerInfo> getControllersInfos();
+    void setControllersInfos(const QList<ControllerInfo> &controllersList);
+
+    static QString decodeEncodeData(const QString &input, const QString &key = "%31_)*&z;");
+
 protected:
     Settings(const QString &filepath =
             QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/" +

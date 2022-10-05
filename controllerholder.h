@@ -21,16 +21,19 @@ public:
     void collectData();
     State state() const;
 signals:
-    void dataCollected(const QMap<QString, QMap<QString, QMap<QString, QStringList>>> &data);
+    void dataCollected(const QMap<QString, QMap<QString, QMap<QString, QString>>> &data);
+    void errorReceived(const QString &error);
 protected:
     explicit ControllerHolder();
 private:
-    static bool init();
-    void parseOutput(const QString &answer);
+    bool init();
+    bool initControllers();
+    void parseOutput(QString answer);
+    void receiveAnswer(const QString &responce);
 private:
     QVector<QSharedPointer<Telnet>> m_controllers;
-    // [controller][tranceiverGroup][cell/param]
-    QMap<QString, QMap<QString, QMap<QString, QStringList>>> m_data;
+    // [controller][cell][param] - > value
+    QMap<QString, QMap<QString, QMap<QString, QString>>> m_data;
     static QVector<QString> s_commans;
     size_t m_receive {0};
     State m_state {State::Idle};
